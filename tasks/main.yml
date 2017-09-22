@@ -25,11 +25,11 @@
 - name: Rename install directory
   command: "chdir={{jboss_home}} /bin/mv jboss-as-7.1.1.Final jboss-as creates={{jboss_home}}/jboss-as"
 
-- name: Copying standalone.xml configuration file
-  template:
-    src: standalone.xml
-    dest: "{{jboss_home}}/jboss-as/standalone/configuration/"
-  notify: restart jboss
+#- name: Copying standalone.xml configuration file
+#  template:
+#    src: standalone.xml
+#    dest: "{{jboss_home}}/jboss-as/standalone/configuration/"
+#  notify: restart jboss
 
 - name: Add group "jboss"
   group:
@@ -55,9 +55,9 @@
     dest: /etc/init.d/jboss
     mode: 0755
 
-- name: Workaround for systemd bug
-  shell: service jboss start && chkconfig jboss on
-  ignore_errors: yes
+#- name: Workaround for systemd bug
+#  shell: service jboss start && chkconfig jboss on
+#  ignore_errors: yes
 
 - name: Enable JBoss to be started at boot
   service:

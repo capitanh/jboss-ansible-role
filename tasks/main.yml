@@ -5,9 +5,9 @@
     state: present
   with_items:
    - unzip
-   # - java-1.7.0-openjdk
    - libselinux-python
    - libsemanage-python
+   - vim
 
 - name: Download JBoss from jboss.org
   get_url:
@@ -49,15 +49,27 @@
     state: directory
     recurse: yes
 
-- name: Copy the init script
-  template:
-    src: jboss-as-standalone.sh
-    dest: /etc/init.d/jboss
-    mode: 0755
+#- name: Copy the init script
+#  template:
+#    src: jboss-as-standalone.sh
+#    dest: /etc/init.d/jboss
+#    mode: 0755
 
 #- name: Workaround for systemd bug
 #  shell: service jboss start && chkconfig jboss on
 #  ignore_errors: yes
+
+- name: Enable JBoss to be started at boot
+  service:
+    name: jboss
+    enabled: yes
+    state: started
+
+- name: Copy the init script
+  template:
+    src: jboss-as-standalone.service
+    dest: /etc/systemd/system/jboss.service
+    mode: 0755
 
 - name: Enable JBoss to be started at boot
   service:

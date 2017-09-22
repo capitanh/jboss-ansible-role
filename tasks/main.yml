@@ -59,12 +59,6 @@
 #  shell: service jboss start && chkconfig jboss on
 #  ignore_errors: yes
 
-- name: Enable JBoss to be started at boot
-  service:
-    name: jboss
-    enabled: yes
-    state: started
-
 - name: Copy the init script
   template:
     src: jboss-as-standalone.service

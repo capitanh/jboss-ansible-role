@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=idle
-Environment=JAVA_HOME={{jdk_basedir}} JBOSS_HOME={{jboss_home}}/jboss-as JAVA={{jdk_basedir}}/jdk1.8.0_131/bin/java
+Environment=JAVA_HOME={{jdk_basedir}} JBOSS_HOME={{jboss_home}}/jboss-as JAVA={{jdk_basedir}}/{{jdk_version}}/bin/java
 User=jboss
 Group=jboss
 ExecStart={{jboss_home}}/jboss-as/bin/standalone.sh
